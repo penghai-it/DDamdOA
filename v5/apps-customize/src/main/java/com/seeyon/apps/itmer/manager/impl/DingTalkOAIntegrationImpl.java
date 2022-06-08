@@ -36,7 +36,6 @@ public class DingTalkOAIntegrationImpl implements DingTalkOAIntegration {
                 //String SQL = "SELECT ? FROM ? WHERE ? = " + exampleId;
                 //int execute = jdbcAgent.execute(SQL);
                 if (true) { //添加为实例id时候存在 TODO
-
                     //获取表实例数据
                     JSONObject exampleData = dingTaikInterfaceImpl.getExampleData(exampleId, accessToken);
                     String exampleDataString = JSONObject.toJSONString(exampleData);
@@ -66,18 +65,17 @@ public class DingTalkOAIntegrationImpl implements DingTalkOAIntegration {
                                 if (fileValueList != null && !fileValueList.isEmpty()) {
                                     List<Long> formcontentatt = new ArrayList();
                                     for (Object fileValue : fileValueList) {
-                                        JSONObject fileValueJson = JSONObject.parseObject(String.valueOf(fileValue));
+                                        JSONObject fileValueJson = JSONObject.parseObject(JSONObject.toJSONString(fileValue));
                                         //文件id
                                         String fileId = String.valueOf(fileValueJson.get("fileId"));
                                         //文件名
                                         String fileName = String.valueOf(fileValueJson.get("fileName"));
                                         //获取钉钉附件
                                         JSONObject attachmentData = dingTaikInterfaceImpl.getAttachment(exampleId, accessToken, fileId);
-                                        JSONObject result = JSONObject.parseObject(String.valueOf(attachmentData.get("result")));
+                                        JSONObject result = JSONObject.parseObject(JSONObject.toJSONString(attachmentData.get("result")));
                                         //附件下载地址
                                         String downloadUri = String.valueOf(result.get("download_uri"));
                                         AttachmentOperationImpl attachmentOperationImpl = (AttachmentOperationImpl) AppContext.getBean("attachmentOperationImpl");
-
                                         //环境安装目录
                                         String applicationFolder = SystemEnvironment.getApplicationFolder();
                                         //文件保存目录

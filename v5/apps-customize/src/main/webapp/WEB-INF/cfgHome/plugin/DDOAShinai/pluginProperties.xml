@@ -5,16 +5,18 @@
         <tokenUrl mark="{VE}" desc="钉钉获取token接口地址">https://oapi.dingtalk.com/gettoken</tokenUrl>
         <exampleId mark="{VE}" desc="获取审批实例ID接口地址">https://oapi.dingtalk.com/topapi/processinstance/listids</exampleId>
         <exampleData mark="{VE}" desc="获取审批实例数据接口地址">https://oapi.dingtalk.com/topapi/processinstance/get</exampleData>
-        <attachmentUrl mark="{VE}" desc="获取审批附件接口地址">https://oapi.dingtalk.com/topapi/processinstance/get</attachmentUrl>
+        <attachmentUrl mark="{VE}" desc="获取审批附件接口地址">https://oapi.dingtalk.com/topapi/processinstance/file/url/get
+        </attachmentUrl>
         <!--一下的可以修改-->
         <appKey mark="{VE}" desc="钉钉的AppKey">dingpkt1zv3bltwnyld5</appKey>
-        <appSecret mark="{VE}" desc="钉钉的AppSecret">fr-0hA7xDXNQz7bGXP7rWBs1Hoiw4LDw1lhOICDlqj1yaADpTiKMNzpeY7rdyBFU</appSecret>
+        <appSecret mark="{VE}" desc="钉钉的AppSecret">fr-0hA7xDXNQz7bGXP7rWBs1Hoiw4LDw1lhOICDlqj1yaADpTiKMNzpeY7rdyBFU
+        </appSecret>
         <fromCode mark="{VE}" desc="表单编号">PROC-91B0CED6-8A34-44C1-A29E-87678BF90DA6</fromCode>
         <!--以上为钉钉的相关配置，以下为OA的配置-->
         <ipAndPort mark="{VE}" desc="OA的IP和端口">127.0.0.1:8089</ipAndPort>
         <restUser mark="{VE}" desc="OA_rest接口用户名/密码">test/b6ffd17b-da6e-4c87-b8ef-a04a95b1777c</restUser>
         <loginName mark="{VE}" desc="OA中专用用户登录名">kf1</loginName>
-        <templateCode mark="{VE}" desc="流程发起的模板编号">kf1</templateCode>
+        <templateCode mark="{VE}" desc="流程发起的模板编号">CS001</templateCode>
 
 
     </approvalProcess>

@@ -9,5 +9,4 @@
     </bean>
     <bean name="oAInterfaceImpl" class="com.seeyon.apps.itmer.manager.impl.OAInterfaceImpl">
     </bean>
-
 </beans>
