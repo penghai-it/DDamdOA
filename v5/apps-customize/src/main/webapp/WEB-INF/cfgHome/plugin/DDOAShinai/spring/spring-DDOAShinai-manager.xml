@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+    <bean name="dingTalkOAIntegrationImpl" class="com.seeyon.apps.itmer.manager.impl.DingTalkOAIntegrationImpl">
+    </bean>
+    <bean name="dingTaikInterfaceImpl" class="com.seeyon.apps.itmer.manager.impl.DingTaikInterfaceImpl">
+    </bean>
+    <bean name="attachmentOperationImpl" class="com.seeyon.apps.itmer.manager.impl.AttachmentOperationImpl">
+    </bean>
+    <bean name="oAInterfaceImpl" class="com.seeyon.apps.itmer.manager.impl.OAInterfaceImpl">
+    </bean>
+
+</beans>

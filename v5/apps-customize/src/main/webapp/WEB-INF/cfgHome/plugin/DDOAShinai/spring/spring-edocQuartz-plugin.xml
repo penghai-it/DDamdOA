@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+    <!--用来启动自动加载-->
+    <bean name="edocQuartzInit" class="com.seeyon.apps.itmer.init.edocQuartzInit"/>
+    <!--用来启动定时任务-->
+    <bean name="QuartzRunItmerManager" class="com.seeyon.apps.itmer.manager.QuartzRunItmerManager"/>
+</beans>
