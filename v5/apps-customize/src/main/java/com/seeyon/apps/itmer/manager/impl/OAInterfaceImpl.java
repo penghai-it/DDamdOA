@@ -168,4 +168,36 @@ public class OAInterfaceImpl implements OAInterface {
         return result;
 
     }
+    /**
+     * OA流程发起接口--2
+     *
+     * @param token
+     * @param data  数据
+     * @return
+     */
+    @Override
+    public String processInitiation2(String token, String data) {
+        String ipAndPort = AppContext.getSystemProperty("approvalProcess.ipAndPort");
+        String templateCode = AppContext.getSystemProperty("approvalProcess.templateCodes");
+        String url = "http://" + ipAndPort + "/seeyon/rest/flow/" + templateCode + "?token=" + token;
+        log.info("流程发起传的数据" + data);
+        String result = "";
+        //调用rest接口
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        MediaType mediaType = MediaType.parse("application/json");
+        try {
+            RequestBody body = RequestBody.create(mediaType, data);
+            Request request = new Request.Builder().url(url).method("POST", body).addHeader("Content-Type", "application/json").build();
+            Response response = client.newCall(request).execute();
+            result = response.body().string();
+        } catch (Exception e) {
+            log.error("流程发起接口调用失败,返回值:" + result, e);
+            return "流程发起接口调用失败！";
+        } finally {
+            client = null;
+            mediaType = null;
+        }
+        log.error("流程发起接口返回的数据:" + result);
+        return result;
+    }
 }

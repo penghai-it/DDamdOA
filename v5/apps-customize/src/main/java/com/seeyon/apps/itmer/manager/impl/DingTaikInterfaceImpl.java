@@ -16,11 +16,15 @@ import com.seeyon.ctp.common.AppContext;
 import com.taobao.api.ApiException;
 import com.alibaba.fastjson.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class DingTaikInterfaceImpl implements DingTaikInterface {
     //获取钉钉access_token
@@ -55,7 +59,49 @@ public class DingTaikInterfaceImpl implements DingTaikInterface {
         LocalDateTime endData = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
         long startTime = startData.toInstant(ZoneOffset.of("+8")).toEpochMilli();
         long endTime = endData.toInstant(ZoneOffset.of("+8")).toEpochMilli();
-        req.setStartTime(startTime);
+        Calendar today = new GregorianCalendar(TimeZone.getTimeZone("GMT+8"));
+        today.setTimeInMillis(startTime);
+        today.add(Calendar.DAY_OF_MONTH, -10);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long date = today.getTime().getTime();
+        req.setStartTime(date);
+        req.setEndTime(endTime);
+        /*   req.setSize(10L);
+        req.setCursor(0L);
+        req.setUseridList("manager1,manager2");*/
+        OapiProcessinstanceListidsResponse rsp = client.execute(req, token);
+        JSONObject jsonObject = JSONObject.parseObject(rsp.getBody());
+        Object result = jsonObject.get("result");
+        String IdList = JSONObject.toJSONString(result);
+        JSONObject IdListJson = JSONObject.parseObject(IdList);
+        List<String> exampleIdList = (List<String>) IdListJson.get("list");
+        return exampleIdList;
+    }
+
+    /**
+     * 获取钉钉审批的实例列表ID--2
+     *
+     * @param token
+     * @return exampleIdList 所有的实例id集合
+     * @throws ApiException
+     */
+    @Override
+    public List<String> getExampleIdList2(String token) throws ApiException {
+        DingTalkClient client = new DefaultDingTalkClient(AppContext.getSystemProperty("approvalProcess.exampleId"));
+        OapiProcessinstanceListidsRequest req = new OapiProcessinstanceListidsRequest();
+        req.setProcessCode(AppContext.getSystemProperty("approvalProcess.fromCodes"));//表单编号的
+        //当天零点（开始时间）
+        LocalDateTime startData = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+        //当天24点（结束时间）
+        LocalDateTime endData = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+        long startTime = startData.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        long endTime = endData.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        Calendar today = new GregorianCalendar(TimeZone.getTimeZone("GMT+8"));
+        today.setTimeInMillis(startTime);
+        today.add(Calendar.DAY_OF_MONTH, -10);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long date = today.getTime().getTime();
+        req.setStartTime(date);
         req.setEndTime(endTime);
         /*   req.setSize(10L);
         req.setCursor(0L);

@@ -32,5 +32,14 @@ public interface OAInterface {
      */
     public String processInitiation(String token, String data);
 
+    /**
+     * OA流程发起接口--2
+     *
+     * @param token
+     * @param data  数据
+     * @return
+     */
+    public String processInitiation2(String token, String data);
+
     public byte[] getStartData(File file) throws UnsupportedEncodingException;
 }

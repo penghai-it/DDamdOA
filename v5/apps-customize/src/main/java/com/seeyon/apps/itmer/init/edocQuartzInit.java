@@ -17,6 +17,7 @@ public class edocQuartzInit extends AbstractSystemInitializer {
     public void initialize() {
         log.info("定时任务开始");
         QuartzRunItmerManager.StartTask();
+        QuartzRunItmerManager.StartTask2();
     }
 
     @Override

@@ -22,6 +22,15 @@ public interface DingTaikInterface {
     public List<String> getExampleIdList(String token) throws ApiException;
 
     /**
+     * 获取钉钉审批的实例列表ID---2
+     *
+     * @param token
+     * @return
+     * @throws ApiException
+     */
+    public List<String> getExampleIdList2(String token) throws ApiException;
+
+    /**
      * 获取表实例数据
      *
      * @param exampleId 实例id

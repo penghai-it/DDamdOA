@@ -9,4 +9,6 @@ public interface DingTalkOAIntegration {
     //OA获取钉钉中的审批数据
     @AjaxAccess
     public void dingTalkOAApproval();
+    @AjaxAccess
+    public void dingTalkOAApproval2();
 }

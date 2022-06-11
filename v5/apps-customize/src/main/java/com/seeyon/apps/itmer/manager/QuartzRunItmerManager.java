@@ -47,6 +47,26 @@ public class QuartzRunItmerManager implements QuartzJob {
         }
     }
 
+    public static void StartTask2() {
+        Calendar cal = Calendar.getInstance();
+        Date start = cal.getTime();
+        cal.add(Calendar.YEAR, 1);
+        Date end = cal.getTime();
+        // parameters里放要在任务中取出的参数
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("name", "DDOA2");
+        try {
+            // 凌晨01:00
+            if (QuartzHolder.hasQuartzJob("DDOAShinai", "dingTalkOAIntegrationImpl2")) {
+                QuartzHolder.deleteQuartzJobByGroupAndJobName("DDOAShinai", "dingTalkOAIntegrationImpl2");
+            }
+            String startItmer = AppContext.getSystemProperty("approvalProcess.startItmers");
+            QuartzHolder.newCronQuartzJob("DDOAShinai", "dingTalkOAIntegrationImpl2", startItmer, start, end, "QuartzRunItmerManager", parameters);
+            log.info("定时发起流程注入成功222");
+        } catch (Exception ex) {
+            log.info("定时器启动失败22", ex);
+        }
+    }
 
     @Override
     public void execute(Map<String, String> map) {
@@ -55,8 +75,15 @@ public class QuartzRunItmerManager implements QuartzJob {
             case "DDOA":
                 DingTalkOAIntegration dingTalkOAIntegration = (DingTalkOAIntegration) AppContext.getBean("dingTalkOAIntegrationImpl");
                 if (dingTalkOAIntegration != null) {
-                    log.info("start processInit success");
+                    log.info("dingTalkOAApproval()执行了！");
                     dingTalkOAIntegration.dingTalkOAApproval();
+                }
+                break;
+            case "DDOA2":
+                DingTalkOAIntegration dingTalkOAIntegration2 = (DingTalkOAIntegration) AppContext.getBean("dingTalkOAIntegrationImpl");
+                if (dingTalkOAIntegration2 != null) {
+                    log.info("dingTalkOAApproval2()执行了！");
+                    dingTalkOAIntegration2.dingTalkOAApproval2();
                 }
         }
     }
