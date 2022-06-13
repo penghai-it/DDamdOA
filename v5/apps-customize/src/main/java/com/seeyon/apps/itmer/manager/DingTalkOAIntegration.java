@@ -9,6 +9,8 @@ public interface DingTalkOAIntegration {
     //OA获取钉钉中的审批数据
     @AjaxAccess
     public void dingTalkOAApproval();
+
+    //查询钉钉实例ID写入OA表中
     @AjaxAccess
-    public void dingTalkOAApproval2();
+    public void ddProcessIdQuery();
 }

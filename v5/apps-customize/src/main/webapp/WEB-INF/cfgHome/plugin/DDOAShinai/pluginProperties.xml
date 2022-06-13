@@ -2,7 +2,7 @@
 <ctpConfig>
     <approvalProcess>
         <startItmer mark="{VE}" desc="第一张表执行的时间">0 0/3 * * * ?</startItmer>
-        <startItmers mark="{VE}" desc="第二张表执行的时间">0 0/5 * * * ?</startItmers>
+        <startItmers mark="{VE}" desc="查询钉钉实例ID写入OA表中时间">0 0/5 * * * ?</startItmers>
         <tokenUrl mark="{VE}" desc="钉钉获取token接口地址">https://oapi.dingtalk.com/gettoken</tokenUrl>
         <exampleId mark="{VE}" desc="获取审批实例ID接口地址">https://oapi.dingtalk.com/topapi/processinstance/listids</exampleId>
         <exampleData mark="{VE}" desc="获取审批实例数据接口地址">https://oapi.dingtalk.com/topapi/processinstance/get</exampleData>
@@ -18,6 +18,7 @@
         <loginName mark="{VE}" desc="OA中专用用户登录名">kf1</loginName>
         <templateCode mark="{VE}" desc="流程发起的模板编号1">CS001</templateCode>
         <templateCodes mark="{VE}" desc="流程发起的模板编号2">CS001</templateCodes>
+        <recordFormCode mark="{VE}" desc="实例ID记录表编号">slid</recordFormCode>
 
     </approvalProcess>
 </ctpConfig>

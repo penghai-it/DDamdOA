@@ -61,7 +61,7 @@ public class DingTaikInterfaceImpl implements DingTaikInterface {
         long endTime = endData.toInstant(ZoneOffset.of("+8")).toEpochMilli();
         Calendar today = new GregorianCalendar(TimeZone.getTimeZone("GMT+8"));
         today.setTimeInMillis(startTime);
-        today.add(Calendar.DAY_OF_MONTH, -10);
+        today.add(Calendar.DAY_OF_MONTH, -2);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long date = today.getTime().getTime();
         req.setStartTime(date);
@@ -98,7 +98,7 @@ public class DingTaikInterfaceImpl implements DingTaikInterface {
         long endTime = endData.toInstant(ZoneOffset.of("+8")).toEpochMilli();
         Calendar today = new GregorianCalendar(TimeZone.getTimeZone("GMT+8"));
         today.setTimeInMillis(startTime);
-        today.add(Calendar.DAY_OF_MONTH, -10);
+        today.add(Calendar.DAY_OF_MONTH, -2);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long date = today.getTime().getTime();
         req.setStartTime(date);

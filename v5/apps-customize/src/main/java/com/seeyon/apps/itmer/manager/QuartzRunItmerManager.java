@@ -83,7 +83,7 @@ public class QuartzRunItmerManager implements QuartzJob {
                 DingTalkOAIntegration dingTalkOAIntegration2 = (DingTalkOAIntegration) AppContext.getBean("dingTalkOAIntegrationImpl");
                 if (dingTalkOAIntegration2 != null) {
                     log.info("dingTalkOAApproval2()执行了！");
-                    dingTalkOAIntegration2.dingTalkOAApproval2();
+                    dingTalkOAIntegration2.ddProcessIdQuery();
                 }
         }
     }
