@@ -50,9 +50,9 @@ public class DingTalkOAIntegrationImpl implements DingTalkOAIntegration {
                     String StringData = JSONObject.toJSONString(dataArray);
                     JSONObject jsonData = JSONObject.parseObject(StringData);
                     //实例id TODO
-                    String exampleId = String.valueOf(jsonData.get(""));
+                    String exampleId = String.valueOf(jsonData.get("审批id字段"));
                     //是属于那张表  TODO
-                    String fromId = String.valueOf(jsonData.get(""));
+                    String fromId = String.valueOf(jsonData.get("判断是那张表字段"));
             /*    }
 
             }
@@ -83,7 +83,6 @@ public class DingTalkOAIntegrationImpl implements DingTalkOAIntegration {
                             JSONObject formComponentValueJson = JSONObject.parseObject(formComponentValueString);
                             //判断是否是附件
                             if ("DDAttachment".equals(formComponentValueJson.get("component_type"))) {
-                                //附件数据处理 TODO
                                 String fileValueString = String.valueOf(formComponentValueJson.get("value"));
                                 List fileValueList = (List) JSON.parse(fileValueString);
                                 if (fileValueList != null && !fileValueList.isEmpty()) {
