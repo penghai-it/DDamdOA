@@ -114,6 +114,26 @@ public class DingTalkOAIntegrationImpl implements DingTalkOAIntegration {
                                     //附件信息
                                     map.put("formContentAtt", formcontentatt);
                                 }
+                                //图片处理
+                            } else if ("DDPhotoField".equals(formComponentValueJson.get("component_type"))) {
+                                String DDPhotoFieldString = String.valueOf(formComponentValueJson.get("value"));
+                                //所有图片集合
+                                List DDPhotoFieldList = (List) JSON.parse(DDPhotoFieldString);
+                                if (DDPhotoFieldList != null && !DDPhotoFieldList.isEmpty()) {
+                                    for (Object DDPhotoFieldUrl : DDPhotoFieldList) {
+                                        //图片下载
+                                        AttachmentOperationImpl attachmentOperationImpl = (AttachmentOperationImpl) AppContext.getBean("attachmentOperationImpl");
+                                        //环境安装目录
+                                        String applicationFolder = SystemEnvironment.getApplicationFolder();
+                                        //文件保存目录
+                                        String filePath = applicationFolder.split("ApacheJetspeed")[0] + "base/data";
+                                        //图片名
+                                        String[] split = String.valueOf(DDPhotoFieldUrl).split("/");
+                                        //图片下载（返回的文件路径）
+                                        String download = attachmentOperationImpl.download(String.valueOf(DDPhotoFieldUrl), split[split.length - 1], filePath);
+                                        //OA中图片处理 TODO
+                                    }
+                                }
                             } else {
                                 //除了附件其他数据都以name为key值，value为数据value
                                 dataMap.put(formComponentValueJson.get("name"), formComponentValueJson.get("value"));
